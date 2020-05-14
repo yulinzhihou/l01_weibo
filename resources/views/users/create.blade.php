@@ -10,7 +10,6 @@
         @include('shared._errors')
         <form action="{{ route('users.store') }}" method="post">
           {{ csrf_field() }}
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="form-group">
             <label for="name">名称：</label>
             <input class="form-control" name="name" type="text" value="{{ old('name') }}">
@@ -24,8 +23,8 @@
             <input type="password" name="password" class="form-control" value="{{ old('password') }}">
           </div>
           <div class="form-group">
-            <label for="password-confirm">确认密码：</label>
-            <input type="password" name="password-confirm" class="form-control" value="{{ old('password_confirm') }}">
+            <label for="password_confirmation">确认密码：</label>
+            <input type="password" name="password_confirmation" class="form-control" value="{{ old('password_confirmation') }}">
           </div>
 
           <button class="btn btn-primary" type="submit">注册</button>
