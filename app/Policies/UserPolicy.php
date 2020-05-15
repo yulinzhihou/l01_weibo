@@ -29,4 +29,15 @@ class UserPolicy
     {
         return $currentUser->id === $user->id;
     }
+
+    /**
+     * 用户删除
+     * @param User $currentUser
+     * @param User $user
+     * @return bool
+     */
+    public function destroy(User $currentUser,User $user)
+    {
+        return $currentUser->id !== $user->id && $currentUser->is_admin;
+    }
 }
