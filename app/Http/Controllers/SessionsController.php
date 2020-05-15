@@ -44,7 +44,8 @@ class SessionsController extends Controller
      */
     public function destroy()
     {
-        session()->flush();
-        return redirect()->route('signup');
+        Auth::logout();
+        session()->flash('success','您已经成功退出了～');
+        return redirect()->route('login');
     }
 }
