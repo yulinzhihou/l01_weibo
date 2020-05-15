@@ -8,6 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+    {
+        /*auth 中间件过滤方法*/
+        $this->middleware('auth',[
+            'except'=>['show','store','create']
+        ]);
+
+        $this->middleware('guest',[
+           'only'   => ['create']
+        ]);
+    }
     /**
      * 用户注册
      */
@@ -55,9 +67,11 @@ class UsersController extends Controller
      * 用户编辑页面
      * @param User $user
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(User $user)
     {
+        $this->authorize('update',$user);
         return view('users.edit',compact('user'));
     }
 
@@ -70,6 +84,7 @@ class UsersController extends Controller
      */
     public function update(User $user,Request $request)
     {
+        $this->authorize('update',$user);
         $this->validate($request,[
             'name'      => 'required|max:50',
             'password'  => 'nullable|confirmed|min:6|max:20'

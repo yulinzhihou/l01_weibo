@@ -19,7 +19,9 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+//            return redirect(RouteServiceProvider::HOME);
+            session()->flash('success','你已登录，请不要再操作了～');
+            return redirect('/');
         }
 
         return $next($request);
