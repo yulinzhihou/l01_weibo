@@ -22,3 +22,8 @@ Route::delete('logout','SessionsController@destroy')->name('logout');
 
 //邮箱激活路由
 Route::get('signup/confirm/{token}','UsersController@confirmEmail')->name('confirm_email');
+//忘记密码
+Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');/*记录密码页面展示*/
+Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');/*发送忘记密码的链接到邮箱*/
+Route::get('password/reset/{token}','Auth\ResetPasswordController@showResetForm')->name('password.reset');/*打开发送的链接页面*/
+Route::post('password/reset','Auth\ResetPasswordController@reset')->name('password.update');/*修改密码*/
