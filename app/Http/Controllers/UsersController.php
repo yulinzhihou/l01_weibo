@@ -13,7 +13,7 @@ class UsersController extends Controller
     {
         /*auth 中间件过滤方法*/
         $this->middleware('auth',[
-            'except'=>['show','store','create']
+            'except'=>['show','store','create','index']
         ]);
 
         $this->middleware('guest',[
@@ -100,4 +100,13 @@ class UsersController extends Controller
         return redirect()->route('users.show',$user->id);
     }
 
+
+    /**
+     * 用户列表
+     */
+    public function index()
+    {
+        $users = User::paginate(10);
+        return view('users.index',compact('users'));
+    }
 }
