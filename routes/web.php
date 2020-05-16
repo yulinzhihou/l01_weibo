@@ -27,5 +27,8 @@ Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm')
 Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');/*发送忘记密码的链接到邮箱*/
 Route::get('password/reset/{token}','Auth\ResetPasswordController@showResetForm')->name('password.reset');/*打开发送的链接页面*/
 Route::post('password/reset','Auth\ResetPasswordController@reset')->name('password.update');/*修改密码*/
-
+//微博资源路由
 Route::resource('statuses','StatusesController',['only' => ['store','destroy']]);
+//粉丝关注
+Route::get('/users/{user}/followers','UsersController@followers')->name('users.followers');/*粉丝*/
+Route::get('/users/{user}/followings','UsersController@followings')->name('users.followings'); /*我是别人粉丝*/
