@@ -57,4 +57,12 @@ class User extends Authenticatable
         });
 
     }
+
+    /**
+     * 与微博内容表建议关联关系
+     */
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
 }
