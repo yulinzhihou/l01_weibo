@@ -122,7 +122,7 @@ class User extends Authenticatable
      * @param $user_id
      * @return
      */
-    public function isFollowers($user_id)
+    public function isFollowings($user_id)
     {
         return $this->followings->contains($user_id);
     }
