@@ -188,4 +188,10 @@ class UsersController extends Controller
         $title = $user->name . '关注的人';
         return view('users.show_follow',compact('users','title'));
     }
+
+    public function feed()
+    {
+        $user_ids = $this->followings->pluck('id')->toArray();
+        array_push($user_ids,$this->id);
+    }
 }
