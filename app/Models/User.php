@@ -102,7 +102,7 @@ class User extends Authenticatable
         if (! is_array($user_ids)) {
             $user_ids = compact('user_ids');
         }
-        $this->followings()->attach($user_ids,false);
+        $this->followings()->sync($user_ids,false);
     }
 
     /**
