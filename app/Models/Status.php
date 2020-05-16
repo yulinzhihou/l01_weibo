@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
 {
+    protected $fillable = ['content'];
     /**
      * 与用户表建立一对多的关联关系
      */
